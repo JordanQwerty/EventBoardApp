@@ -1,0 +1,8 @@
+# === NetBeans build folders ===
+/nbproject/private/
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/nbactions.xml
+/nb-configuration.xml
