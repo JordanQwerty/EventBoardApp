@@ -15,11 +15,17 @@ import java.net.Socket;
  *  ServerApp.java
  */
 public class ServerApp {
+    
+    
     private static final int PORT = 8080;
     private static ServerSocket servSock;
     private static int clientConnections = 0;
     
+   
+    
     public static void main(String[] args) {
+        
+   
         System.out.println("Opening port ...");
         try{
             servSock = new ServerSocket(PORT);

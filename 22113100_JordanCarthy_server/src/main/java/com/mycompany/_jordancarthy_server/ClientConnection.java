@@ -15,7 +15,7 @@ import java.net.Socket;
  * @author jordancarthy
  */
 public class ClientConnection implements Runnable{
-
+    
     Socket client_link = null;
     String clientID;
 
@@ -28,10 +28,16 @@ public class ClientConnection implements Runnable{
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(client_link.getInputStream())); 
             PrintWriter out = new PrintWriter(client_link.getOutputStream(), true); 
-
-            String message = in.readLine();         
-            System.out.println("Message received from client: " + clientID + "  " + message);
-            out.println("Echo Message: " + message);
+            String message;
+            while((message = in.readLine())!=null){ 
+                if(message.equalsIgnoreCase("Stop")){
+                    out.println("TERMINATE");
+                    break;
+                }
+                System.out.println("Message received from client: " + clientID + "  " + message);
+                out.println("Echo Message: " + message);
+            
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

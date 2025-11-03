@@ -46,12 +46,21 @@ public class ClientApp {
 
             
             BufferedReader userEntry = new BufferedReader(new InputStreamReader(System.in));
-
+          do{
+               
             System.out.println("Enter message to be sent to server: ");
             String message = userEntry.readLine();
 
             sendMessage(out, message);
-            receiveResponse(in);
+            String response = receiveResponse(in);  
+            if(response.equalsIgnoreCase("terminate")){
+                System.out.println(response);
+                break;
+            }else{
+                System.out.println(response);
+            }
+          }while(true);
+            
         } catch (IOException e) {
             System.out.println("Socket connection error : " + e);
         }finally{
@@ -69,9 +78,9 @@ public class ClientApp {
     }
 
     // Helper method : receive and print server response
-    private static void receiveResponse(BufferedReader in) throws IOException {
+    private static String receiveResponse(BufferedReader in) throws IOException {
         String response = in.readLine();
-        System.out.println("\nSERVER RESPONSE> " + response);
+        return response;
     }
 
     // Method for retrieving event from url 
